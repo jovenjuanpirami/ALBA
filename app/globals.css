@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Paleta de marca (kit de identidad ALBA · Dawn mark v1) ---- */
+  --color-paper: #f5f2ed; /* papel cálido, fondo base */
+  --color-card: #fffdfa; /* superficies elevadas */
+  --color-paper-deep: #efeae1; /* bandas y estados activos */
+  --color-ink: #1c1a17; /* texto principal y CTAs */
+  --color-slate: #6b6157; /* texto secundario (AA sobre paper) */
+  --color-rule: #ddd6ca; /* hairlines de 1px */
+  --color-amber: #e8a340; /* sol, arriba del gradiente */
+  --color-ember: #c9762b; /* sol, abajo del gradiente */
+  --color-ember-deep: #8a5a1f; /* acento en texto pequeño (AA sobre paper) */
+
+  --font-display: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+
+  --ease-dawn: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+}
+
+/* ---- Utilidades tipográficas ---- */
+
+/** Etiqueta mono sin color: para superficies oscuras donde el color se pasa aparte. */
+@utility label-tracked {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/** La misma etiqueta con el gris cálido por defecto, para el fondo claro. */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/** Tracking ancho del wordmark. El text-indent compensa el espacio final. */
+@utility wordmark {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+/* ---- Revelado al hacer scroll ---- */
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms var(--ease-dawn),
+    transform 700ms var(--ease-dawn);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* El sol que amanece detrás del producto. */
+@utility dawn-glow {
+  background: radial-gradient(
+    58% 46% at 50% 62%,
+    color-mix(in oklab, var(--color-amber) 42%, transparent) 0%,
+    color-mix(in oklab, var(--color-ember) 16%, transparent) 45%,
+    transparent 72%
+  );
+}
+
+@keyframes dawn-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arc-draw {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility animate-dawn-rise {
+  animation: dawn-rise 800ms var(--ease-dawn) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+@utility animate-arc-draw {
+  animation: arc-draw 900ms var(--ease-dawn) 200ms both;
+}
+
+@utility animate-rule-draw {
+  animation: rule-draw 700ms var(--ease-dawn) 500ms both;
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+  /* El contenido revelado por scroll debe quedar visible sin movimiento. */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
