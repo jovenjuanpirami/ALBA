@@ -100,17 +100,54 @@ Reinicia `npm run dev` — las variables de entorno solo se leen al arrancar.
 
 Si el renglón no aparece, la consola donde corre `npm run dev` te dice exactamente por qué.
 
-### 5. Para publicarlo
+---
+
+## Publicar
+
+El repo vive en [github.com/jovenjuanpirami/ALBA](https://github.com/jovenjuanpirami/ALBA) y se
+deploya desde ahí. **No en GitHub Pages:** Pages solo sirve archivos estáticos y este sitio
+necesita servidor para el middleware, las rutas de API y el render con cookies. En estático se
+vería igual pero no mediría nada — ni un solo clic quedaría registrado.
+
+### Primera vez
+
+1. Entra a [vercel.com/new](https://vercel.com/new) con tu cuenta de GitHub.
+2. **Import Git Repository** → elige `jovenjuanpirami/ALBA`.
+3. No cambies nada: Vercel detecta Next.js solo. **Deploy**.
+4. En ~90 segundos tienes una URL `alba-xxxx.vercel.app`.
+
+**El primer deploy funciona sin ninguna variable de entorno.** El sitio se ve completo, el
+modal abre y los eventos se intentan mandar; simplemente no se guardan. `/api/waitlist`
+responde 503 en lugar de perder correos en silencio, y `/admin` responde 404 hasta que exista
+el token.
+
+### Después, cuando conectes Supabase y Resend
+
+**Project → Settings → Environment Variables**, agrega las de la tabla de abajo para
+*Production*, *Preview* y *Development*, y redeploya. Alternativamente, desde el CLI:
 
 ```bash
-npm i -g vercel     # el CLI no está instalado en esta máquina
+npm i -g vercel
 vercel link
-vercel --prod
+vercel integration add supabase   # provisiona e inyecta las variables solo
+vercel env pull                   # las trae a .env.local para desarrollo
 ```
 
-Las mismas variables van en **Vercel → Project → Settings → Environment Variables**. Las de
-Supabase y Resend se pueden provisionar desde el Vercel Marketplace
-(`vercel integration add supabase`) y quedan inyectadas sin copiarlas a mano.
+### Cada cambio a partir de ahí
+
+```bash
+git add -A && git commit -m "lo que cambiaste" && git push
+```
+
+Vercel redeploya en cada push a `main`. Cada rama y cada PR obtienen su propia URL de preview,
+que sirve para probar un cambio de copy o de precio sin tocar el sitio que está recibiendo
+tráfico pagado.
+
+### Nota de versión de Node
+
+`@supabase/supabase-js` pide **Node 22 o más**. En Vercel no hay nada que hacer, usa 24 por
+defecto. En local estás en Node 20, que funciona pero da un warning de `EBADENGINE` y ya no
+tiene soporte: vale la pena subir a Node 22 LTS.
 
 ## Variables de entorno
 
