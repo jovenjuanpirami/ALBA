@@ -13,6 +13,9 @@ type Step = "email" | "wtp";
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+/** Mismo tope que valida /api/waitlist, para que el mensaje salga antes del viaje. */
+const MAX_WTP = 100_000;
+
 export function WaitlistModal() {
   const { purchase, variant, closeWaitlist } = useStore();
   const router = useRouter();
@@ -168,9 +171,24 @@ export function WaitlistModal() {
 
   async function submitWtp(event: React.FormEvent) {
     event.preventDefault();
-    const amount = Number.parseInt(wtp, 10);
-    if (!Number.isFinite(amount) || amount <= 0) {
+    setError(null);
+
+    // Vacío = "prefiero no decir". Sale sin registrar respuesta.
+    const raw = wtp.trim();
+    if (raw === "") {
       finish();
+      return;
+    }
+
+    // Validamos en JS y no con los atributos del input, para que el mensaje
+    // salga en español y no el del navegador.
+    const amount = Number.parseInt(raw.replace(/[^\d]/g, ""), 10);
+    if (!Number.isFinite(amount) || amount <= 0) {
+      setError("Escribe una cantidad en pesos, solo números.");
+      return;
+    }
+    if (amount > MAX_WTP) {
+      setError("Esa cantidad se ve fuera de rango.");
       return;
     }
 
@@ -326,7 +344,7 @@ export function WaitlistModal() {
               ¿Cuánto pagarías por una bolsa de {tier.servings} porciones?
             </p>
 
-            <form onSubmit={submitWtp} className="mt-7">
+            <form onSubmit={submitWtp} className="mt-7" noValidate>
               <label htmlFor="wtp-amount" className="label-mono block">
                 Monto en pesos
               </label>
@@ -335,18 +353,27 @@ export function WaitlistModal() {
                 <input
                   id="wtp-amount"
                   name="wtp"
-                  type="number"
+                  // `type="text"` a propósito: con type="number" el navegador impone
+                  // sus propias reglas de validación y las escribe en inglés.
+                  type="text"
                   inputMode="numeric"
-                  min={1}
-                  max={100000}
-                  step={10}
+                  autoComplete="off"
+                  maxLength={7}
                   value={wtp}
-                  onChange={(e) => setWtp(e.target.value)}
-                  className="num w-full bg-transparent text-[15px] text-ink outline-none"
+                  onChange={(e) => setWtp(e.target.value.replace(/[^\d]/g, ""))}
+                  aria-invalid={error ? true : undefined}
+                  aria-describedby={error ? "wtp-error" : undefined}
+                  className="num w-full bg-transparent text-[15px] text-ink outline-none placeholder:text-slate/55"
                   placeholder={String(active.priceShown)}
                 />
                 <span className="label-mono">MXN</span>
               </div>
+
+              {error ? (
+                <p id="wtp-error" role="alert" className="mt-3 text-[13px] text-ember-deep">
+                  {error}
+                </p>
+              ) : null}
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <button
