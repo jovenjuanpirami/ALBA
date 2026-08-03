@@ -127,6 +127,31 @@
   );
 }
 
+/* Desfile de los 26 nutrientes. Solo transform, así corre en el compositor. */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker {
+  animation: ticker 64s linear infinite;
+  will-change: transform;
+}
+
+.group:hover .ticker {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker {
+    animation: none;
+  }
+}
+
 @keyframes dawn-rise {
   from {
     opacity: 0;

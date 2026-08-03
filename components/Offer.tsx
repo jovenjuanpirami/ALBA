@@ -1,6 +1,6 @@
 import Image from "next/image";
 import heroPackage from "@/media/hero-package.png";
-import { MACROS } from "@/lib/product";
+import { MACROS, macroText } from "@/lib/product";
 import {
   HERO_TIER,
   formatPerServing,
@@ -82,7 +82,7 @@ export function Offer({ variant }: { variant: PriceVariant }) {
               {MACROS.slice(0, 3).map((macro) => (
                 <div key={macro.label}>
                   <dt className="label-mono">{macro.label}</dt>
-                  <dd className="num mt-1 text-[15px] text-ink">{macro.value}</dd>
+                  <dd className="num mt-1 text-[15px] text-ink">{macroText(macro)}</dd>
                 </div>
               ))}
             </dl>

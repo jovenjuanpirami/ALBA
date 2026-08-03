@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { NUTRIENT_COUNT, NUTRIENT_GROUPS, type NutrientRow } from "@/lib/nutrients";
 import { MACROS } from "@/lib/product";
 import { track } from "@/lib/track";
+import { CountUp } from "./CountUp";
+import { DailyGauge } from "./DailyGauge";
 import { Reveal } from "./Reveal";
 import { Container, Heading, SectionLabel } from "./Section";
 import { useStore } from "./Store";
@@ -97,16 +99,29 @@ export function NutrientPanel() {
           </Reveal>
         </div>
 
-        <Reveal delay={80}>
-          <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-6">
-            {MACROS.map((macro) => (
-              <div key={macro.label} className="bg-card px-4 py-5">
-                <dt className="label-mono">{macro.label}</dt>
-                <dd className="num mt-2 text-lg text-ink">{macro.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+        {/* Lo que trae, y a qué equivale en tu día. */}
+        <div className="mt-14 grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-5">
+            <DailyGauge />
+          </Reveal>
+
+          <Reveal delay={120} className="lg:col-span-7">
+            <p className="label-mono mb-5">Por porción</p>
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-3">
+              {MACROS.map((macro) => (
+                <div key={macro.label} className="bg-card px-4 py-6">
+                  <dt className="label-mono">{macro.label}</dt>
+                  <dd className="num mt-2 text-[1.375rem] leading-none text-ink">
+                    <CountUp to={macro.amount} decimals={macro.decimals} />
+                    {macro.unit ? (
+                      <span className="ml-1 text-[0.875rem] text-slate">{macro.unit}</span>
+                    ) : null}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        </div>
 
         <div ref={tableRef} className="mt-14">
           {!expanded ? (

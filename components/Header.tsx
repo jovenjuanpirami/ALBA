@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HERO_TIER, formatPrice } from "@/lib/pricing";
+import { scrollPercent } from "@/lib/scroll";
 import { LogoLockup } from "./Logo";
 import { useStore } from "./Store";
 
@@ -17,16 +18,39 @@ const LINKS = [
 export function Header() {
   const { variant, openWaitlist } = useStore();
   const [scrolled, setScrolled] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 300);
-    onScroll();
+    let queued = false;
+
+    // La barra de progreso se escribe directo en el DOM: si pasara por estado,
+    // React re-renderizaría el header en cada frame de scroll.
+    const measure = () => {
+      queued = false;
+      setScrolled(window.scrollY > 300);
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${scrollPercent() / 100})`;
+      }
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(measure);
+    };
+
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
     <header
+      // `sticky` ya es un valor posicionado, así que la barra absoluta se ancla aquí.
       className={`sticky top-0 z-40 bg-paper transition-colors duration-300 ${
         scrolled ? "border-b border-rule" : "border-b border-transparent"
       }`}
@@ -64,6 +88,13 @@ export function Header() {
           </button>
         </div>
       </div>
+
+      {/* Progreso de lectura: el amanecer avanzando conforme baja la página. */}
+      <div
+        ref={progressRef}
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-linear-to-r from-ember to-amber"
+      />
     </header>
   );
 }

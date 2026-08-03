@@ -8,6 +8,7 @@ import { Hero } from "@/components/Hero";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Instrumentation } from "@/components/Instrumentation";
 import { NutrientPanel } from "@/components/NutrientPanel";
+import { NutrientTicker } from "@/components/NutrientTicker";
 import { Offer } from "@/components/Offer";
 import { StickyBar } from "@/components/StickyBar";
 import { StoreProvider } from "@/components/Store";
@@ -29,6 +30,7 @@ export default async function LandingPage() {
         <HowItWorks />
         <CostComparison variant={variant} />
         <Flavors />
+        <NutrientTicker />
         <NutrientPanel />
         <Offer variant={variant} />
         <AntiMlmBand />

@@ -37,15 +37,32 @@ export function isFlavor(value: unknown): value is Flavor {
   return value === "chocolate" || value === "vainilla";
 }
 
+export type Macro = {
+  label: string;
+  /** Separado del texto para poder animar el conteo. */
+  amount: number;
+  decimals: 0 | 1;
+  unit: string;
+};
+
 /** Macros por porción. Una sola fórmula, idéntica en los dos sabores. */
-export const MACROS = [
-  { label: "Energía", value: "450 kcal" },
-  { label: "Proteína", value: "35 g" },
-  { label: "Carbohidratos", value: "46 g" },
-  { label: "Grasa", value: "13.5 g" },
-  { label: "Fibra", value: "8.5 g" },
-  { label: "Nutrientes", value: "26" },
-] as const;
+export const MACROS: readonly Macro[] = [
+  { label: "Energía", amount: 450, decimals: 0, unit: "kcal" },
+  { label: "Proteína", amount: 35, decimals: 0, unit: "g" },
+  { label: "Carbohidratos", amount: 46, decimals: 0, unit: "g" },
+  { label: "Grasa", amount: 13.5, decimals: 1, unit: "g" },
+  { label: "Fibra", amount: 8.5, decimals: 1, unit: "g" },
+  { label: "Nutrientes", amount: 26, decimals: 0, unit: "" },
+];
+
+export function macroText(macro: Macro): string {
+  const value = macro.amount.toFixed(macro.decimals);
+  return macro.unit ? `${value} ${macro.unit}` : value;
+}
+
+/** Porcentaje del VNR diario que cubre cada número de porciones. */
+export const VNR_PER_SERVING = 30;
+export const SERVING_OPTIONS = [1, 2, 3] as const;
 
 /** Los tres datos del hero. El ámbar está reservado para "60 segundos". */
 export const HERO_FACTS: readonly { value: string; label: string; accent?: boolean }[] = [
