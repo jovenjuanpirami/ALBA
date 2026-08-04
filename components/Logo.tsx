@@ -1,6 +1,10 @@
 /**
- * Marca ALBA — "Dawn mark v1", reconstruida en SVG desde el kit de identidad:
- * semicírculo con gradiente #E8A340 → #C9762B sobre una regla de tinta más ancha.
+ * Marca ALBA — el sol saliendo sobre el horizonte.
+ *
+ * Es un ARCO (banda semicircular), no un semicírculo sólido: así viene impreso
+ * en los siete renders del empaque, y manda el empaque porque es lo que ve el
+ * cliente. Para volver a la versión sólida del kit original, cambia el <path>
+ * por `d="M12 44 A 44 44 0 0 1 100 44 Z"` con fill en lugar de stroke.
  */
 
 type MarkProps = {
@@ -12,7 +16,7 @@ type MarkProps = {
 };
 
 export function SunMark({ className = "h-8", animate = false, mono = null }: MarkProps) {
-  const fill = mono === "ink" ? "#1C1A17" : mono === "paper" ? "#F5F2ED" : "url(#alba-dawn)";
+  const arcColor = mono === "ink" ? "#1C1A17" : mono === "paper" ? "#F5F2ED" : "url(#alba-dawn)";
   const ruleFill = mono === "paper" ? "#F5F2ED" : "#1C1A17";
 
   return (
@@ -29,16 +33,19 @@ export function SunMark({ className = "h-8", animate = false, mono = null }: Mar
           <stop offset="100%" stopColor="#C9762B" />
         </linearGradient>
       </defs>
-      {/* Semicírculo: el sol saliendo. */}
+      {/* El arco: el sol saliendo. */}
       <path
-        d="M12 44 A 44 44 0 0 1 100 44 Z"
-        fill={fill}
+        d="M16.5 49.5 A 39.5 39.5 0 0 1 95.5 49.5"
+        fill="none"
+        stroke={arcColor}
+        strokeWidth="11"
+        strokeLinecap="butt"
         className={animate ? "animate-arc-draw" : undefined}
       />
       {/* Horizonte, más ancho que el arco. */}
       <rect
         x="0"
-        y="52"
+        y="51"
         width="112"
         height="3"
         fill={ruleFill}

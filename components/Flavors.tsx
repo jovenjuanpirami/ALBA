@@ -1,10 +1,10 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import ingredientsChocolate from "@/media/ingredients-chocolate.png";
-import ingredientsVainilla from "@/media/ingredients-vainilla.png";
-import lifestyleChocolate from "@/media/lifestyle-chocolate.png";
-import lifestyleVainilla from "@/media/lifestyle-vainilla.png";
+import ingredientsChocolate from "@/media/ingredients-chocolate.webp";
+import ingredientsVainilla from "@/media/ingredients-vainilla.webp";
+import lifestyleChocolate from "@/media/lifestyle-chocolate.webp";
+import lifestyleVainilla from "@/media/lifestyle-vainilla.webp";
 import { FLAVORS, getFlavor, type Flavor } from "@/lib/product";
 import { FlavorToggle } from "./FlavorToggle";
 import { Reveal } from "./Reveal";
@@ -79,7 +79,7 @@ export function Flavors() {
           <Reveal className="lg:col-span-5">
             <CrossFade
               active={flavor}
-              ratio="431 / 611"
+              ratio="728 / 1024"
               sizes="(min-width: 1024px) 420px, 92vw"
               pick={(id) => ({ src: IMAGES[id].lifestyle, alt: IMAGES[id].alt })}
             />
@@ -105,7 +105,7 @@ export function Flavors() {
             <Reveal delay={120} className="mt-8">
               <CrossFade
                 active={flavor}
-                ratio="415 / 297"
+                ratio="1600 / 1137"
                 sizes="(min-width: 1024px) 620px, 92vw"
                 pick={(id) => ({ src: IMAGES[id].ingredients, alt: IMAGES[id].altIngredients })}
               />

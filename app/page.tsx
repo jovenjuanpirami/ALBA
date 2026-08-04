@@ -10,6 +10,7 @@ import { Instrumentation } from "@/components/Instrumentation";
 import { NutrientPanel } from "@/components/NutrientPanel";
 import { NutrientTicker } from "@/components/NutrientTicker";
 import { Offer } from "@/components/Offer";
+import { PowderBand } from "@/components/PowderBand";
 import { StickyBar } from "@/components/StickyBar";
 import { StoreProvider } from "@/components/Store";
 import { TopBar } from "@/components/TopBar";
@@ -32,6 +33,7 @@ export default async function LandingPage() {
         <Flavors />
         <NutrientTicker />
         <NutrientPanel />
+        <PowderBand />
         <Offer variant={variant} />
         <AntiMlmBand />
         <Faq />

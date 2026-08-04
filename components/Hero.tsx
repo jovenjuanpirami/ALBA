@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroPackage from "@/media/hero-package.png";
+import heroPackage from "@/media/hero-package.webp";
 import { HERO_FACTS } from "@/lib/product";
 import { HERO_TIER, formatPerServing, formatPrice, getTier, type PriceVariant } from "@/lib/pricing";
 import { BuyButton } from "./BuyButton";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroPackage from "@/media/hero-package.png";
+import heroPackage from "@/media/hero-package.webp";
 import { MACROS, macroText } from "@/lib/product";
 import {
   HERO_TIER,

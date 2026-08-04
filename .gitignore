@@ -13,3 +13,8 @@ Thumbs.db
 
 # Basura que dejan las herramientas de Windows/Cygwin al caerse.
 *.stackdump
+
+# Renders originales sin comprimir (~43 MB). Viven en OneDrive, no en git:
+# el historial de git no los suelta nunca y harían lento cada clone.
+# Lo que el sitio usa de verdad es media/, ya optimizado y sí versionado.
+Assets/
