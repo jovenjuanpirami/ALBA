@@ -63,7 +63,7 @@ export function Faq() {
     <section className="border-b border-rule py-16 sm:py-24">
       <Container>
         <Reveal>
-          <SectionLabel index="07">Preguntas</SectionLabel>
+          <SectionLabel index="06">Preguntas</SectionLabel>
         </Reveal>
 
         <div className="border-t border-ink">

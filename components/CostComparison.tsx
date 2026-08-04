@@ -17,7 +17,7 @@ export function CostComparison({ variant }: { variant: PriceVariant }) {
     <section className="border-b border-rule py-16 sm:py-24">
       <Container>
         <Reveal>
-          <SectionLabel index="02">El problema</SectionLabel>
+          <SectionLabel index="01">El problema</SectionLabel>
         </Reveal>
 
         <div className="grid gap-10 md:grid-cols-12 md:gap-12">

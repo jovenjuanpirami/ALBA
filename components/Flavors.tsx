@@ -87,7 +87,7 @@ export function Flavors() {
 
           <div className="lg:col-span-7">
             <Reveal>
-              <SectionLabel index="03">Sabores</SectionLabel>
+              <SectionLabel index="02">Sabores</SectionLabel>
               <Heading>Dos sabores. La misma fórmula.</Heading>
               <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-slate">
                 No hay versiones para hombre y para mujer, ni niveles, ni ediciones. Una sola

@@ -41,12 +41,20 @@ export function Footer() {
       <div className="border-t border-paper/12">
         <Container className="flex flex-col gap-3 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="label-tracked text-paper/50">© {year} Alba · Hecho en México</p>
-          <a
-            href="/aviso-de-privacidad"
-            className="label-tracked text-paper/80 underline underline-offset-4 transition-colors hover:text-amber"
-          >
-            Aviso de privacidad
-          </a>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a
+              href="mailto:juanpi@artu.ai"
+              className="label-tracked text-paper/80 underline underline-offset-4 transition-colors hover:text-amber"
+            >
+              Contacto
+            </a>
+            <a
+              href="/aviso-de-privacidad"
+              className="label-tracked text-paper/80 underline underline-offset-4 transition-colors hover:text-amber"
+            >
+              Aviso de privacidad
+            </a>
+          </div>
         </Container>
       </div>
     </footer>

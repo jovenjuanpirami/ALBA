@@ -3,6 +3,7 @@ import { CostComparison } from "@/components/CostComparison";
 import { Faq } from "@/components/Faq";
 import { Flavors } from "@/components/Flavors";
 import { Footer } from "@/components/Footer";
+import { Founders } from "@/components/Founders";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -34,6 +35,8 @@ export default async function LandingPage() {
         <NutrientTicker />
         <NutrientPanel />
         <PowderBand />
+        {/* La confianza va antes de la petición: primero quiénes somos, luego comprar. */}
+        <Founders />
         <Offer variant={variant} />
         <AntiMlmBand />
         <Faq />

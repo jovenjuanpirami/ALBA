@@ -9,15 +9,16 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// TODO(legal): sustituir por la razón social, domicilio fiscal y correo reales
-// antes de correr tráfico pagado. La LFPDPPP exige identificar al responsable.
+// TODO(legal): falta la razón social o el nombre completo de la persona física
+// responsable. La LFPDPPP (art. 16, fr. I) exige identificar al responsable con
+// nombre y domicilio; el domicilio y el correo ya son los reales.
 const RESPONSABLE = {
-  nombre: "[Razón social del responsable]",
-  domicilio: "[Domicilio fiscal completo, México]",
-  correo: "privacidad@[tudominio].mx",
+  nombre: "[Razón social o nombre completo del responsable]",
+  domicilio: "Vosgos 215, Lomas Virreyes, Ciudad de México",
+  correo: "juanpi@artu.ai",
 };
 
-const ULTIMA_ACTUALIZACION = "29 de julio de 2026";
+const ULTIMA_ACTUALIZACION = "3 de agosto de 2026";
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -49,6 +50,33 @@ export default function AvisoDePrivacidad() {
             Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y los
             Lineamientos del Aviso de Privacidad.
           </p>
+
+          <dl className="mt-5 border-t border-rule">
+            {[
+              { k: "Responsable", v: RESPONSABLE.nombre },
+              { k: "Domicilio", v: RESPONSABLE.domicilio },
+              { k: "Contacto", v: RESPONSABLE.correo, mail: true },
+            ].map((row) => (
+              <div
+                key={row.k}
+                className="flex flex-col gap-1 border-b border-rule py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              >
+                <dt className="label-mono">{row.k}</dt>
+                <dd className="text-[14px] text-ink sm:text-right">
+                  {row.mail ? (
+                    <a
+                      href={`mailto:${row.v}`}
+                      className="num text-ember-deep underline underline-offset-2"
+                    >
+                      {row.v}
+                    </a>
+                  ) : (
+                    row.v
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Block>
 
         <Block title="2. Qué datos recabamos">
@@ -65,11 +93,18 @@ export default function AvisoDePrivacidad() {
               , si decides responder esa pregunta opcional.
             </li>
             <li>
+              <strong className="font-medium text-ink">Sabor que elegiste</strong> al momento de
+              dar clic en comprar.
+            </li>
+            <li>
               <strong className="font-medium text-ink">Datos de navegación</strong>: un
               identificador de sesión aleatorio guardado en una cookie propia, la variante de
               precio que se te mostró, los parámetros de campaña (UTM) con los que llegaste, el
-              sitio de referencia, el tipo de dispositivo, el navegador y la ciudad aproximada
-              derivada de tu dirección IP.
+              identificador del clic del anuncio que asigna la plataforma de publicidad (por
+              ejemplo <span className="num text-ink">fbclid</span> de Meta o{" "}
+              <span className="num text-ink">gclid</span> de Google), si es tu primera visita o
+              regresaste, el sitio de referencia, el tipo de dispositivo, el navegador y la ciudad
+              aproximada derivada de tu dirección IP.
             </li>
           </ul>
           <p>
@@ -112,12 +147,18 @@ export default function AvisoDePrivacidad() {
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Supabase, Inc. — almacenamiento de la base de datos.</li>
             <li>Resend, Inc. — envío del correo de confirmación.</li>
-            <li>Vercel, Inc. — hospedaje del sitio.</li>
+            <li>
+              Vercel, Inc. — hospedaje del sitio y medición de visitas agregada, sin cookies.
+            </li>
             <li>
               Meta Platforms, Inc. y Google LLC — medición agregada de campañas, únicamente con
               datos de comportamiento, no con tu correo.
             </li>
           </ul>
+          <p>
+            Todos ellos están fuera de México, así que tus datos se almacenan y procesan en el
+            extranjero, principalmente en Estados Unidos.
+          </p>
           <p>
             Estas transferencias no requieren tu consentimiento conforme al artículo 37 de la
             LFPDPPP, al tratarse de encargados que actúan por cuenta del responsable.
@@ -135,10 +176,19 @@ export default function AvisoDePrivacidad() {
             así como revocar el consentimiento que nos otorgaste.
           </p>
           <p>
-            Escribe a <span className="num text-ink">{RESPONSABLE.correo}</span> desde el mismo
-            correo con el que te registraste, indicando qué derecho deseas ejercer. Te responderemos
-            en un plazo máximo de 20 días hábiles y, si procede, lo haremos efectivo dentro de los
-            15 días hábiles siguientes.
+            Escribe a{" "}
+            <a
+              href={`mailto:${RESPONSABLE.correo}?subject=Derechos%20ARCO%20%C2%B7%20Alba`}
+              className="num text-ember-deep underline underline-offset-2"
+            >
+              {RESPONSABLE.correo}
+            </a>{" "}
+            desde el mismo correo con el que te registraste, indicando qué derecho deseas ejercer y
+            acompañando una identificación oficial. Te responderemos en un plazo máximo de 20 días
+            hábiles y, si procede, lo haremos efectivo dentro de los 15 días hábiles siguientes.
+          </p>
+          <p>
+            También puedes presentar tu solicitud por escrito en {RESPONSABLE.domicilio}.
           </p>
           <p>
             Si consideras que tu derecho a la protección de datos fue vulnerado, puedes acudir a la
@@ -153,6 +203,10 @@ export default function AvisoDePrivacidad() {
             nombre, tu correo ni ningún dato que te identifique directamente. Puedes borrarla desde
             la configuración de tu navegador; si lo haces, es posible que veas un precio distinto en
             una visita posterior, porque la asignación de variante se hará de nuevo.
+          </p>
+          <p>
+            Vercel Web Analytics mide visitas de forma agregada y <strong className="font-medium text-ink">no
+            instala cookies</strong> ni construye un perfil tuyo entre sitios.
           </p>
           <p>
             Si activamos Meta Pixel o Google Analytics 4, esos servicios instalan sus propias

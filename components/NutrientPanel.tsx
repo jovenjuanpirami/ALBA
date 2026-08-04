@@ -80,7 +80,7 @@ export function NutrientPanel() {
     >
       <Container>
         <Reveal>
-          <SectionLabel index="04">Panel nutricional</SectionLabel>
+          <SectionLabel index="03">Panel nutricional</SectionLabel>
         </Reveal>
 
         <div className="grid gap-8 md:grid-cols-12 md:gap-10">
