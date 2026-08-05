@@ -26,7 +26,7 @@ export function Offer({ variant }: { variant: PriceVariant }) {
   const tier = getTier(HERO_TIER);
 
   return (
-    <section id="comprar" className="scroll-mt-20 border-y border-rule bg-card py-16 sm:py-24">
+    <section id="comprar" className="scroll-mt-20 bg-card py-20 sm:py-28">
       <Container>
         <Reveal>
           <SectionLabel index="05">Comprar</SectionLabel>
@@ -41,7 +41,7 @@ export function Offer({ variant }: { variant: PriceVariant }) {
                 alt="Bolsa de Alba Nutrition con un medidor de polvo"
                 placeholder="blur"
                 sizes="(min-width: 768px) 460px, 92vw"
-                className="w-full rounded-sm"
+                className="w-full rounded-lg"
               />
               <div
                 className="pointer-events-none absolute inset-x-8 -bottom-3 h-6 rounded-full bg-ink/10 blur-xl"
@@ -51,7 +51,7 @@ export function Offer({ variant }: { variant: PriceVariant }) {
           </Reveal>
 
           <Reveal delay={120}>
-            <h3 className="font-display text-xl font-normal tracking-tight">{tier.name}</h3>
+            <h3 className="font-display text-2xl">{tier.name}</h3>
             <p className="mt-1.5 text-[15px] text-slate">{tier.contents}</p>
 
             <div className="mt-7 flex items-end gap-4">

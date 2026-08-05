@@ -78,7 +78,7 @@ export function Header() {
             onClick={() => openWaitlist({ tier: HERO_TIER, position: "sticky_bar", ui: "header" })}
             tabIndex={scrolled ? undefined : -1}
             aria-hidden={!scrolled}
-            className={`hidden rounded-xs bg-ink px-4 py-2.5 text-[13px] font-medium text-paper transition-all duration-300 hover:bg-amber hover:text-ink sm:inline-flex ${
+            className={`hidden rounded-pill bg-ink px-4 py-2.5 text-[13px] font-medium text-paper transition-all duration-300 hover:bg-amber hover:text-ink sm:inline-flex ${
               scrolled
                 ? "translate-y-0 opacity-100"
                 : "pointer-events-none -translate-y-1 opacity-0"

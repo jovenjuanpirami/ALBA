@@ -5,7 +5,7 @@ import { Container, Heading, SectionLabel } from "./Section";
 
 export function Founders() {
   return (
-    <section id="nosotros" className="scroll-mt-20 border-b border-rule py-16 sm:py-24">
+    <section id="nosotros" className="scroll-mt-24 py-20 sm:py-28">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
@@ -14,7 +14,7 @@ export function Founders() {
               alt="Nerea y Juan Pablo, fundadores de Alba"
               placeholder="blur"
               sizes="(min-width: 1024px) 460px, 92vw"
-              className="w-full rounded-sm"
+              className="w-full rounded-lg shadow-soft"
             />
           </Reveal>
 
@@ -32,13 +32,13 @@ export function Founders() {
                   alrededor de entrenar y de trabajar.
                 </p>
                 <p>
-                  El problema siempre fue el mismo: entre una clase temprano y una junta a las
-                  nueve, el desayuno es lo primero que se cae.
+                  Y siempre nos pasa lo mismo: cuando la mañana viene apretada, el desayuno es lo
+                  primero que se cae.
                 </p>
-                <p className="border-l border-ember pl-5 text-ink">
+                <p className="text-ink">
                   Alba es lo que estamos construyendo para cerrar ese hueco. No hay una red detrás
                   ni un club al que entrar: somos nosotros dos, haciendo el desayuno que nos hacía
-                  falta a los dos.
+                  falta.
                 </p>
               </div>
 

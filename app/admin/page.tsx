@@ -42,7 +42,7 @@ function Metric({
         <span className="flex items-baseline gap-2">
           {tone ? (
             <span
-              className={`num rounded-xs px-1.5 py-0.5 text-[10px] tracking-[0.1em] uppercase ${VERDICT_STYLE[tone]}`}
+              className={`num rounded-pill px-1.5 py-0.5 text-[10px] tracking-[0.1em] uppercase ${VERDICT_STYLE[tone]}`}
             >
               {tone}
             </span>
@@ -218,13 +218,13 @@ export default async function AdminPage({
         <div className="flex gap-3">
           <a
             href={exportHref("waitlist")}
-            className="num rounded-xs border border-ink px-4 py-2.5 text-[12px] tracking-[0.1em] uppercase hover:bg-ink hover:text-paper"
+            className="num rounded-pill border border-ink px-4 py-2.5 text-[12px] tracking-[0.1em] uppercase hover:bg-ink hover:text-paper"
           >
             CSV waitlist
           </a>
           <a
             href={exportHref("events")}
-            className="num rounded-xs border border-ink px-4 py-2.5 text-[12px] tracking-[0.1em] uppercase hover:bg-ink hover:text-paper"
+            className="num rounded-pill border border-ink px-4 py-2.5 text-[12px] tracking-[0.1em] uppercase hover:bg-ink hover:text-paper"
           >
             CSV eventos
           </a>
@@ -257,7 +257,7 @@ export default async function AdminPage({
       </div>
 
       <section className="mt-12 border-t border-ink pt-8">
-        <h2 className="font-display text-xl font-normal tracking-tight">Quién está entrando</h2>
+        <h2 className="font-display text-2xl">Quién está entrando</h2>
         <p className="num mt-2 text-[12px] text-slate">
           Sesiones únicas con page_view. Esto es tráfico, no registros.
         </p>
@@ -274,7 +274,7 @@ export default async function AdminPage({
       </section>
 
       <section className="mt-12 border-t border-ink pt-8">
-        <h2 className="font-display text-xl font-normal tracking-tight">Quién dejó su correo</h2>
+        <h2 className="font-display text-2xl">Quién dejó su correo</h2>
         <div className="mt-6 grid gap-8 sm:grid-cols-3">
           <BreakdownTable title="Registros por utm_campaign" rows={report.byCampaign} />
           <BreakdownTable title="Registros por utm_content" rows={report.byContent} />

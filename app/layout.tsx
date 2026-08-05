@@ -1,20 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight, JetBrains_Mono, Jost } from "next/font/google";
+import { Instrument_Serif, JetBrains_Mono, Jost } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 
+/** Serif editorial de alto contraste: es la que cambia la época del sitio. */
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-instrument",
+});
+
+/** Geométrica, la misma familia del wordmark impreso. Cuerpo y UI. */
 const jost = Jost({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-jost",
 });
 
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter-tight",
-});
-
+/** Solo para cifras: precios, panel de nutrientes, etiquetas de dato. */
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
@@ -45,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es-MX"
-      className={`${jost.variable} ${interTight.variable} ${jetbrains.variable}`}
+      className={`${instrument.variable} ${jost.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-dvh antialiased">
         {children}

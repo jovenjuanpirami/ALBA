@@ -223,7 +223,7 @@ export function WaitlistModal() {
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={descId}
-        className="animate-dawn-rise relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-sm border-t border-rule bg-card px-5 pt-6 pb-8 sm:max-w-lg sm:rounded-sm sm:border sm:px-9 sm:pt-8 sm:pb-9"
+        className="animate-dawn-rise relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-lg bg-card px-5 pt-6 pb-8 sm:max-w-lg sm:rounded-lg sm:px-9 sm:pt-8 sm:pb-9"
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -246,7 +246,7 @@ export function WaitlistModal() {
           <>
             <h2
               id={titleId}
-              className="mt-6 text-[1.75rem] leading-[1.08] font-light tracking-tight sm:text-[2rem]"
+              className="mt-6 text-[1.75rem] sm:text-[2rem]"
             >
               Todavía no está a la venta.
             </h2>
@@ -262,7 +262,7 @@ export function WaitlistModal() {
               </p>
             </div>
 
-            <div className="mt-6 rounded-xs border border-rule bg-paper px-4 py-3.5">
+            <div className="mt-6 rounded-pill border border-rule bg-paper px-4 py-3.5">
               <div className="flex items-baseline justify-between gap-3">
                 <span className="label-mono">Precio reservado</span>
                 <span className="num text-[15px] text-ink">{priceLabel}</span>
@@ -287,7 +287,7 @@ export function WaitlistModal() {
                 onChange={(e) => setEmail(e.target.value)}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? "waitlist-error" : undefined}
-                className="mt-2.5 w-full rounded-xs border border-ink bg-card px-4 py-3.5 text-[15px] text-ink transition-colors placeholder:text-slate/55 focus:border-ember"
+                className="mt-2.5 w-full rounded-pill border border-ink bg-card px-4 py-3.5 text-[15px] text-ink transition-colors placeholder:text-slate/55 focus:border-ember"
                 placeholder="tu@correo.com"
               />
 
@@ -322,7 +322,7 @@ export function WaitlistModal() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-6 w-full rounded-xs bg-ink px-6 py-4 text-[15px] font-medium text-paper transition-colors duration-200 hover:bg-amber hover:text-ink disabled:opacity-60"
+                className="mt-6 w-full rounded-pill bg-ink px-6 py-4 text-[15px] font-medium text-paper transition-colors duration-200 hover:bg-amber hover:text-ink disabled:opacity-60"
               >
                 {submitting ? "Reservando…" : "Reservar mi lugar"}
               </button>
@@ -336,7 +336,7 @@ export function WaitlistModal() {
           <>
             <h2
               id={titleId}
-              className="mt-6 text-[1.75rem] leading-[1.08] font-light tracking-tight sm:text-[2rem]"
+              className="mt-6 text-[1.75rem] sm:text-[2rem]"
             >
               Una última pregunta, y nos ayuda muchísimo.
             </h2>
@@ -348,7 +348,7 @@ export function WaitlistModal() {
               <label htmlFor="wtp-amount" className="label-mono block">
                 Monto en pesos
               </label>
-              <div className="mt-2.5 flex items-center gap-2 rounded-xs border border-ink bg-card px-4 py-3.5 focus-within:border-ember">
+              <div className="mt-2.5 flex items-center gap-2 rounded-pill border border-ink bg-card px-4 py-3.5 focus-within:border-ember">
                 <span className="num text-slate">$</span>
                 <input
                   id="wtp-amount"
@@ -378,14 +378,14 @@ export function WaitlistModal() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="submit"
-                  className="flex-1 rounded-xs bg-ink px-6 py-4 text-[15px] font-medium text-paper transition-colors duration-200 hover:bg-amber hover:text-ink"
+                  className="flex-1 rounded-pill bg-ink px-6 py-4 text-[15px] font-medium text-paper transition-colors duration-200 hover:bg-amber hover:text-ink"
                 >
                   Enviar
                 </button>
                 <button
                   type="button"
                   onClick={finish}
-                  className="rounded-xs border border-rule px-6 py-4 text-[15px] text-slate transition-colors duration-200 hover:border-ink hover:text-ink"
+                  className="rounded-pill border border-rule px-6 py-4 text-[15px] text-slate transition-colors duration-200 hover:border-ink hover:text-ink"
                 >
                   Prefiero no decir
                 </button>

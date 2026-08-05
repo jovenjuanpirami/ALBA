@@ -121,7 +121,7 @@ export function DailyGauge() {
       <div
         role="group"
         aria-label="Porciones al día"
-        className="mt-8 inline-flex rounded-xs border border-rule bg-card p-1"
+        className="mt-8 inline-flex rounded-pill border border-rule bg-card p-1"
       >
         {SERVING_OPTIONS.map((option) => {
           const active = option === servings;
@@ -131,7 +131,7 @@ export function DailyGauge() {
               type="button"
               aria-pressed={active}
               onClick={() => setServings(option)}
-              className={`num rounded-xs px-4 py-2 text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 ${
+              className={`num rounded-pill px-4 py-2 text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 ${
                 active ? "bg-ink text-paper" : "text-slate hover:text-ink"
               }`}
             >

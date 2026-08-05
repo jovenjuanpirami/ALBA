@@ -17,7 +17,7 @@ export default function Gracias() {
 
         <p className="label-tracked mt-8 text-ember-deep">Registro confirmado</p>
 
-        <h1 className="mt-5 text-[clamp(2rem,7vw,3.75rem)] leading-[1.02] font-light tracking-tight">
+        <h1 className="mt-5 text-[clamp(2rem,7vw,3.75rem)]">
           Tu lugar está reservado.
         </h1>
 
@@ -46,13 +46,13 @@ export default function Gracias() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-xs border border-ink px-6 py-3.5 text-[15px] font-medium transition-colors duration-150 hover:bg-ink hover:text-paper"
+            className="inline-flex items-center justify-center rounded-pill border border-ink px-6 py-3.5 text-[15px] font-medium transition-colors duration-150 hover:bg-ink hover:text-paper"
           >
             Volver al inicio
           </Link>
           <Link
             href="/#panel-nutricional"
-            className="inline-flex items-center justify-center rounded-xs border border-rule px-6 py-3.5 text-[15px] text-slate transition-colors duration-150 hover:border-ink hover:text-ink"
+            className="inline-flex items-center justify-center rounded-pill border border-rule px-6 py-3.5 text-[15px] text-slate transition-colors duration-150 hover:border-ink hover:text-ink"
           >
             Ver los 26 nutrientes
           </Link>

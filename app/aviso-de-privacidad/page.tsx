@@ -23,7 +23,7 @@ const ULTIMA_ACTUALIZACION = "3 de agosto de 2026";
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-rule py-8">
-      <h2 className="text-lg font-semibold sm:text-xl">{title}</h2>
+      <h2 className="text-2xl">{title}</h2>
       <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-slate">{children}</div>
     </section>
   );
@@ -36,7 +36,7 @@ export default function AvisoDePrivacidad() {
         <Link href="/" className="label-tracked text-ember-deep hover:underline">
           ← Volver a Alba
         </Link>
-        <h1 className="mt-8 text-[clamp(2rem,6vw,3.5rem)] leading-[1.02] font-light tracking-tight">
+        <h1 className="mt-8 text-[clamp(2rem,6vw,3.5rem)]">
           Aviso de privacidad
         </h1>
         <p className="label-mono mt-5">Última actualización · {ULTIMA_ACTUALIZACION}</p>

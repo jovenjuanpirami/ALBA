@@ -76,7 +76,7 @@ export function NutrientPanel() {
   return (
     <section
       id="panel-nutricional"
-      className="scroll-mt-20 border-b border-rule bg-paper-deep py-16 sm:py-24"
+      className="scroll-mt-20 bg-paper-deep py-20 sm:py-28"
     >
       <Container>
         <Reveal>
@@ -107,7 +107,7 @@ export function NutrientPanel() {
 
           <Reveal delay={120} className="lg:col-span-7">
             <p className="label-mono mb-5">Por porción</p>
-            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-3">
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-rule bg-rule sm:grid-cols-3">
               {MACROS.map((macro) => (
                 <div key={macro.label} className="bg-card px-4 py-6">
                   <dt className="label-mono">{macro.label}</dt>
@@ -134,7 +134,7 @@ export function NutrientPanel() {
                 type="button"
                 onClick={openMobile}
                 aria-expanded={false}
-                className="num mt-6 w-full rounded-xs border border-ink px-5 py-3.5 text-[12px] tracking-[0.14em] uppercase transition-colors duration-200 hover:bg-ink hover:text-paper"
+                className="num mt-6 w-full rounded-pill border border-ink px-5 py-3.5 text-[12px] tracking-[0.14em] uppercase transition-colors duration-200 hover:bg-ink hover:text-paper"
               >
                 Ver los {NUTRIENT_COUNT}
               </button>

@@ -60,7 +60,7 @@ export function Faq() {
   };
 
   return (
-    <section className="border-b border-rule py-16 sm:py-24">
+    <section className="py-20 sm:py-28">
       <Container>
         <Reveal>
           <SectionLabel index="06">Preguntas</SectionLabel>

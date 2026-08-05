@@ -12,7 +12,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="border-b border-rule bg-paper-deep">
+    <section className="bg-paper-deep">
       <Container className="py-14 sm:py-16">
         <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
           <Reveal className="md:col-span-5 lg:col-span-4">
@@ -48,7 +48,7 @@ export function HowItWorks() {
                 />
                 <div className="flex items-baseline gap-3">
                   <span className="num text-[11px] tracking-[0.16em] text-ember-deep">{step.n}</span>
-                  <p className="font-display text-xl font-normal tracking-tight text-ink sm:text-2xl">
+                  <p className="font-display text-2xl text-ink sm:text-2xl">
                     {step.title}
                   </p>
                 </div>

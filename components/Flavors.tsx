@@ -43,7 +43,7 @@ function CrossFade({
 }) {
   return (
     <div
-      className="relative overflow-hidden rounded-sm bg-paper"
+      className="relative overflow-hidden rounded-lg bg-paper"
       style={{ aspectRatio: ratio }}
     >
       {FLAVORS.map((flavor) => {
@@ -73,7 +73,7 @@ export function Flavors() {
   const current = getFlavor(flavor);
 
   return (
-    <section id="sabores" className="scroll-mt-20 border-b border-rule py-16 sm:py-24">
+    <section id="sabores" className="scroll-mt-20 py-20 sm:py-28">
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-5">
@@ -89,9 +89,9 @@ export function Flavors() {
             <Reveal>
               <SectionLabel index="02">Sabores</SectionLabel>
               <Heading>Dos sabores. La misma fórmula.</Heading>
-              <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-slate">
-                No hay versiones para hombre y para mujer, ni niveles, ni ediciones. Una sola
-                fórmula y el sabor que prefieras.
+              <p className="mt-7 max-w-lg text-[17px] leading-relaxed text-slate">
+                Eliges el sabor, no la versión. No hay fórmula para ella y fórmula para él, ni
+                ediciones que te obliguen a decidir con qué te conviene quedarte.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-5">
