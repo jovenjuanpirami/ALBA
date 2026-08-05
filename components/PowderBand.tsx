@@ -16,7 +16,7 @@ export function PowderBand() {
           placeholder="blur"
           sizes="(min-width: 1152px) 1088px, 92vw"
           fill
-          className="object-cover"
+          className="drift object-cover"
         />
       </div>
     </Container>

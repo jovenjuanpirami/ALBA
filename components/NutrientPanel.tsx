@@ -6,6 +6,7 @@ import { MACROS } from "@/lib/product";
 import { track } from "@/lib/track";
 import { CountUp } from "./CountUp";
 import { DailyGauge } from "./DailyGauge";
+import { NutrientRows, NUTRIENT_GRID } from "./NutrientRows";
 import { Reveal } from "./Reveal";
 import { Container, Heading, SectionLabel } from "./Section";
 import { useStore } from "./Store";
@@ -13,25 +14,9 @@ import { useStore } from "./Store";
 const MOBILE_PREVIEW_ROWS = 6;
 const PREVIEW: readonly NutrientRow[] = NUTRIENT_GROUPS[0].rows.slice(0, MOBILE_PREVIEW_ROWS);
 
-const GRID =
-  "grid grid-cols-[1fr_4.25rem_2.25rem_3rem] items-baseline gap-2 sm:grid-cols-[1fr_6rem_3rem_4rem] sm:gap-3";
-
-function Row({ row }: { row: NutrientRow }) {
-  return (
-    <div
-      className={`${GRID} border-b border-rule py-2 transition-colors duration-150 hover:bg-card`}
-    >
-      <span className="pr-2 text-[13px] text-ink sm:text-sm">{row.name}</span>
-      <span className="num text-right text-[13px] text-ink sm:text-sm">{row.amount}</span>
-      <span className="num text-left text-[11px] text-slate sm:text-xs">{row.unit}</span>
-      <span className="num text-right text-[13px] text-ember-deep sm:text-sm">{row.vnr}</span>
-    </div>
-  );
-}
-
 function GroupHeader({ title, first = false }: { title: string; first?: boolean }) {
   return (
-    <div className={`${GRID} border-b border-ink pb-2 ${first ? "pt-0" : "pt-10"}`}>
+    <div className={`${NUTRIENT_GRID} border-b border-ink pb-2.5 ${first ? "pt-0" : "pt-12"}`}>
       <span className="label-mono text-ink">{title}</span>
       <span className="label-mono col-span-2 text-right">Cantidad</span>
       <span className="label-mono text-right">% VNR</span>
@@ -127,9 +112,7 @@ export function NutrientPanel() {
           {!expanded ? (
             <div className="sm:hidden">
               <GroupHeader title={NUTRIENT_GROUPS[0].title} first />
-              {PREVIEW.map((row) => (
-                <Row key={row.name} row={row} />
-              ))}
+              <NutrientRows rows={PREVIEW} />
               <button
                 type="button"
                 onClick={openMobile}
@@ -145,9 +128,7 @@ export function NutrientPanel() {
             {NUTRIENT_GROUPS.map((group, i) => (
               <Reveal key={group.title} delay={i * 100}>
                 <GroupHeader title={group.title} first={i === 0} />
-                {group.rows.map((row) => (
-                  <Row key={row.name} row={row} />
-                ))}
+                <NutrientRows rows={group.rows} />
               </Reveal>
             ))}
           </div>

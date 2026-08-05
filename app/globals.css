@@ -113,10 +113,10 @@
 
 @utility reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(26px) scale(0.99);
   transition:
-    opacity 900ms var(--ease-dawn),
-    transform 900ms var(--ease-dawn);
+    opacity 1100ms var(--ease-dawn),
+    transform 1100ms var(--ease-dawn);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -134,6 +134,51 @@
     color-mix(in oklab, var(--color-ember) 14%, transparent) 45%,
     transparent 72%
   );
+}
+
+/* ---- Movimiento ligado al scroll ----
+   Animaciones de scroll nativas: el navegador las corre en el compositor, así
+   que van clavadas al dedo y no cuestan un solo listener de JS. Donde no hay
+   soporte simplemente no pasa nada y queda la imagen quieta. */
+
+@keyframes air-drift {
+  from {
+    transform: translate3d(0, -3.5%, 0) scale(1.09);
+  }
+  to {
+    transform: translate3d(0, 3.5%, 0) scale(1.09);
+  }
+}
+
+@keyframes air-settle {
+  from {
+    transform: translate3d(0, 5%, 0) scale(1.12);
+    opacity: 0.55;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* La imagen respira dentro de su marco mientras la sección cruza la pantalla. */
+    .drift {
+      animation: air-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: transform;
+    }
+
+    /* El fondo del hero se asienta conforme sales de él. */
+    .settle {
+      animation: air-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+      will-change: transform, opacity;
+    }
+  }
 }
 
 /* Desfile de los 26 nutrientes. Solo transform, así corre en el compositor. */

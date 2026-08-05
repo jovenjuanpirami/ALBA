@@ -36,13 +36,15 @@ export function Offer({ variant }: { variant: PriceVariant }) {
         <div className="mt-12 grid items-center gap-10 md:grid-cols-2 md:gap-14">
           <Reveal>
             <div className="relative mx-auto w-full max-w-[460px]">
-              <Image
-                src={heroPackage}
-                alt="Bolsa de Alba Nutrition con un medidor de polvo"
-                placeholder="blur"
-                sizes="(min-width: 768px) 460px, 92vw"
-                className="w-full rounded-lg"
-              />
+              <div className="overflow-hidden rounded-lg">
+                <Image
+                  src={heroPackage}
+                  alt="Bolsa de Alba Nutrition con un medidor de polvo"
+                  placeholder="blur"
+                  sizes="(min-width: 768px) 460px, 92vw"
+                  className="drift w-full"
+                />
+              </div>
               <div
                 className="pointer-events-none absolute inset-x-8 -bottom-3 h-6 rounded-full bg-ink/10 blur-xl"
                 aria-hidden="true"

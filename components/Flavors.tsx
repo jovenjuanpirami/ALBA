@@ -58,7 +58,7 @@ function CrossFade({
             fill
             placeholder="blur"
             sizes={sizes}
-            className={`object-cover transition-opacity duration-500 ease-dawn ${
+            className={`drift object-cover transition-opacity duration-500 ease-dawn ${
               isActive ? "opacity-100" : "opacity-0"
             }`}
           />
