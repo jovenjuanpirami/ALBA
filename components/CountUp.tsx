@@ -6,6 +6,8 @@ type Props = {
   to: number;
   decimals?: 0 | 1;
   durationMs?: number;
+  /** Espera antes de arrancar, para escalonar varios en fila. */
+  delayMs?: number;
   className?: string;
 };
 
@@ -14,7 +16,13 @@ type Props = {
  * El servidor pinta el valor final, así que si no hay JS o el usuario pidió
  * menos movimiento, el número correcto ya está ahí desde el primer frame.
  */
-export function CountUp({ to, decimals = 0, durationMs = 1000, className = "" }: Props) {
+export function CountUp({
+  to,
+  decimals = 0,
+  durationMs = 1000,
+  delayMs = 0,
+  className = "",
+}: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(to);
 
@@ -32,9 +40,9 @@ export function CountUp({ to, decimals = 0, durationMs = 1000, className = "" }:
         if (!entries[0]?.isIntersecting) return;
         observer.disconnect();
 
-        const startedAt = performance.now();
+        const startedAt = performance.now() + delayMs;
         const step = (now: number) => {
-          const t = Math.min(1, (now - startedAt) / durationMs);
+          const t = Math.min(1, Math.max(0, (now - startedAt) / durationMs));
           // easeOutCubic: arranca rápido y frena, se siente mecánico y no elástico.
           setDisplay(to * (1 - Math.pow(1 - t, 3)));
           if (t < 1) frame = requestAnimationFrame(step);
@@ -49,7 +57,7 @@ export function CountUp({ to, decimals = 0, durationMs = 1000, className = "" }:
       observer.disconnect();
       cancelAnimationFrame(frame);
     };
-  }, [to, durationMs]);
+  }, [to, durationMs, delayMs]);
 
   return (
     <span ref={ref} className={className}>

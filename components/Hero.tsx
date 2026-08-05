@@ -1,6 +1,7 @@
 import { HERO_FACTS } from "@/lib/product";
 import { HERO_TIER, formatPerServing, formatPrice, getTier, type PriceVariant } from "@/lib/pricing";
 import { BuyButton } from "./BuyButton";
+import { CountUp } from "./CountUp";
 import { HeroBackdrop } from "./HeroBackdrop";
 import { Container } from "./Section";
 
@@ -53,16 +54,20 @@ export function Hero({ variant }: { variant: PriceVariant }) {
           className="animate-dawn-rise grid grid-cols-2 gap-y-9 sm:grid-cols-4"
           style={{ "--rise-delay": "560ms" } as React.CSSProperties}
         >
-          {HERO_FACTS.map((fact) => (
+          {HERO_FACTS.map((fact, i) => (
             <div key={fact.label} className="text-center">
               <dt className="sr-only">{fact.label}</dt>
               <dd>
                 <span
-                  className={`num block text-[1.75rem] leading-none ${
+                  className={`num block text-[1.75rem] leading-none sm:text-[2rem] ${
                     fact.accent ? "text-ember-deep" : "text-ink"
                   }`}
                 >
-                  {fact.value}
+                  {/* Escalonados: entran uno tras otro cuando el hero se asienta. */}
+                  <CountUp to={fact.amount} durationMs={1100} delayMs={700 + i * 130} />
+                  {fact.suffix ? (
+                    <span className="ml-1.5 text-[0.6em] text-slate">{fact.suffix}</span>
+                  ) : null}
                 </span>
                 <span className="label-mono mt-3 block">{fact.label}</span>
               </dd>

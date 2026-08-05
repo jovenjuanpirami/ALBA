@@ -64,10 +64,19 @@ export function macroText(macro: Macro): string {
 export const VNR_PER_SERVING = 30;
 export const SERVING_OPTIONS = [1, 2, 3] as const;
 
-/** Los tres datos del hero. El ámbar está reservado para "60 segundos". */
-export const HERO_FACTS: readonly { value: string; label: string; accent?: boolean }[] = [
-  { value: "450", label: "kcal" },
-  { value: "35 g", label: "proteína" },
-  { value: "26", label: "nutrientes" },
-  { value: "60", label: "segundos", accent: true },
+/**
+ * Los cuatro datos del hero. La cifra va separada del sufijo para poder
+ * animar el conteo sin tocar la unidad. El ámbar está reservado para
+ * "60 segundos".
+ */
+export const HERO_FACTS: readonly {
+  amount: number;
+  suffix?: string;
+  label: string;
+  accent?: boolean;
+}[] = [
+  { amount: 450, label: "kcal" },
+  { amount: 35, suffix: "g", label: "proteína" },
+  { amount: 26, label: "nutrientes" },
+  { amount: 60, label: "segundos", accent: true },
 ];

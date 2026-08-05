@@ -35,39 +35,52 @@ export function HeroBackdrop() {
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <Image
-        src={fallback}
-        alt=""
-        placeholder="blur"
-        priority
-        fill
-        sizes="100vw"
-        className={`settle object-cover transition-opacity duration-[1500ms] ease-dawn ${
-          ready ? "opacity-0" : "opacity-100"
-        }`}
-      />
-
-      {wantsVideo ? (
-        <video
-          className={`settle absolute inset-0 h-full w-full object-cover transition-opacity duration-[1500ms] ease-dawn ${
-            ready ? "opacity-100" : "opacity-0"
+      {/* Desenfoque fuerte: el video deja de ser una escena con caras y objetos
+          que compiten con el titular, y pasa a ser luz y color en movimiento.
+          El scale evita que se vean los bordes lavados por el blur. */}
+      <div className="absolute inset-0 scale-115 blur-[36px]">
+        <Image
+          src={fallback}
+          alt=""
+          placeholder="blur"
+          priority
+          fill
+          sizes="100vw"
+          className={`settle object-cover transition-opacity duration-1500 ease-dawn ${
+            ready ? "opacity-0" : "opacity-100"
           }`}
-          src="/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          tabIndex={-1}
-          onCanPlay={() => setReady(true)}
         />
-      ) : null}
+
+        {wantsVideo ? (
+          <video
+            className={`settle absolute inset-0 h-full w-full object-cover transition-opacity duration-1500 ease-dawn ${
+              ready ? "opacity-100" : "opacity-0"
+            }`}
+            src="/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+            onCanPlay={() => setReady(true)}
+          />
+        ) : null}
+      </div>
 
       {/* Velo plano: garantiza el contraste del texto pase lo que pase detrás. */}
-      <div className="absolute inset-0 bg-paper/72" />
-      {/* Y el degradado que lo derrite en la página. */}
-      <div className="absolute inset-0 bg-linear-to-b from-paper/60 via-paper/40 to-paper" />
-      <div className="dawn-glow absolute inset-x-0 -top-1/4 h-[80%] opacity-45" />
+      <div className="absolute inset-0 bg-paper/78" />
+      {/* Degradado que lo derrite hacia la página. */}
+      <div className="absolute inset-0 bg-linear-to-b from-paper/55 via-paper/35 to-paper" />
+      {/* Y un halo de papel justo detrás del bloque de texto. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(58% 48% at 50% 42%, var(--color-paper) 0%, color-mix(in oklab, var(--color-paper) 55%, transparent) 55%, transparent 100%)",
+        }}
+      />
+      <div className="dawn-glow absolute inset-x-0 -top-1/4 h-[80%] opacity-40" />
     </div>
   );
 }
