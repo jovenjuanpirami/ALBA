@@ -15,6 +15,7 @@ import { PowderBand } from "@/components/PowderBand";
 import { StickyBar } from "@/components/StickyBar";
 import { StoreProvider } from "@/components/Store";
 import { TopBar } from "@/components/TopBar";
+import { VideoFeature } from "@/components/VideoFeature";
 import { WaitlistModal } from "@/components/WaitlistModal";
 import { getRequestContext } from "@/lib/server-context";
 
@@ -30,6 +31,8 @@ export default async function LandingPage() {
       <main>
         <Hero variant={variant} />
         <HowItWorks />
+        {/* Lees cómo se prepara y enseguida lo ves. */}
+        <VideoFeature />
         <CostComparison variant={variant} />
         <Flavors />
         <NutrientTicker />

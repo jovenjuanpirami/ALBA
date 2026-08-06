@@ -38,7 +38,7 @@ export function HeroBackdrop() {
       {/* Desenfoque fuerte: el video deja de ser una escena con caras y objetos
           que compiten con el titular, y pasa a ser luz y color en movimiento.
           El scale evita que se vean los bordes lavados por el blur. */}
-      <div className="absolute inset-0 scale-115 blur-[36px]">
+      <div className="absolute inset-0 scale-110 blur-[22px]">
         <Image
           src={fallback}
           alt=""
@@ -68,16 +68,18 @@ export function HeroBackdrop() {
         ) : null}
       </div>
 
-      {/* Velo plano: garantiza el contraste del texto pase lo que pase detrás. */}
-      <div className="absolute inset-0 bg-paper/78" />
+      {/* Velo base, moderado: deja ver que hay algo pasando detrás. */}
+      <div className="absolute inset-0 bg-paper/62" />
       {/* Degradado que lo derrite hacia la página. */}
-      <div className="absolute inset-0 bg-linear-to-b from-paper/55 via-paper/35 to-paper" />
-      {/* Y un halo de papel justo detrás del bloque de texto. */}
+      <div className="absolute inset-0 bg-linear-to-b from-paper/45 via-paper/25 to-paper" />
+      {/* El halo solo densifica donde va el texto, y se abre hacia las orillas:
+          ahí el video se ve, aquí el titular se lee. Aun con el video en negro
+          el contraste del texto queda arriba de 13:1. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(58% 48% at 50% 42%, var(--color-paper) 0%, color-mix(in oklab, var(--color-paper) 55%, transparent) 55%, transparent 100%)",
+            "radial-gradient(56% 46% at 50% 42%, color-mix(in oklab, var(--color-paper) 55%, transparent) 0%, color-mix(in oklab, var(--color-paper) 28%, transparent) 60%, transparent 100%)",
         }}
       />
       <div className="dawn-glow absolute inset-x-0 -top-1/4 h-[80%] opacity-40" />
